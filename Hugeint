@@ -1,19 +1,75 @@
 class HugeInteger():
-  
+ 
   #constructor
   def __init__(self):
-    pass
+    self.hi=[0 for i in range(40)]
+    
   #parse String
   def parse(self):
     s= input("Enter integer:")
     self.hi=list(map(int,s))
+    while(self.hi[0]==0 and len(self.hi)>1):
+        self.hi.pop(0)
     
   #addition of huge integer
-  def add(self):
-    pass
+  def add(self,other):
+      l1,l2=len(self.hi),len(other.hi)
+      mx=(l1,l2)
+      diff=l1-l2
+      result=[]
+      carry=0
+      if diff>0:
+          for _ in range(abs(diff)+1):
+            other.hi.insert(0,0)
+          self.hi.insert(0,0)
+      elif diff<0:
+          for _ in range(abs(diff)+1):
+            self.hi.insert(0,0)
+          other.hi.insert(0,0)
+      else:
+          self.hi.insert(0,0)
+          other.hi.insert(0,0)
+      for i in range(len(self.hi)):
+          temp=self.hi[-1-i]+other.hi[-1-i]+carry
+          val=temp%10
+          result.insert(0,val)
+          carry=temp//10
+      while(result[0]==0 and len(result)>1):
+        result.pop(0)
+      print("Addition:","".join([str(i) for i in result]))
   #subtaction of huge integer
-  def subtract(self):
-    pass
+  def subtract(self,other):
+      l1,l2=len(self.hi),len(other.hi)
+      mx=(l1,l2)
+      diff=l1-l2
+      result=[]
+      carry=0
+      if diff>0:
+          for _ in range(abs(diff)+1):
+            other.hi.insert(0,0)
+          self.hi.insert(0,0)
+      elif diff<0:
+          for _ in range(abs(diff)+1):
+            self.hi.insert(0,0)
+          other.hi.insert(0,0)
+      else:
+          self.hi.insert(0,0)
+          other.hi.insert(0,0)
+      for i in range(len(self.hi)):
+          f1=self.hi[-1-i]
+          if(f1<(other.hi[-1-i]+carry)):
+              f1=f1+10
+          val=f1-other.hi[-1-i]-carry
+          if(f1>=10):
+              carry=1
+          else:
+              carry=0
+          result.insert(0,val)
+      while(result[0]==0 and len(result)>1):
+        result.pop(0)
+          
+      print("Subtraction:","".join([str(i) for i in result]))
+   
   def isEqualTo(self,other):
     for i,j in self.hi,other.hi:
         if i!=j:
@@ -62,9 +118,12 @@ class HugeInteger():
     print("".join([str(i) for i in self.hi]))
   
 hi=HugeInteger()
+hi.toString()
 hi.parse()
 hi.toString()
 hi2=HugeInteger()
 hi2.parse()
 hi2.toString()
+hi.add(hi2)
+hi.subtract(hi2)
 print(hi.isLessThanEqualTo(hi2))
