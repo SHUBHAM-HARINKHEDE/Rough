@@ -1,0 +1,34 @@
+class HugeInteger():
+  
+  #constructor
+  def __init__(self):
+    pass
+  #parse String
+  def parse(self):
+    s= input("Enter integer:")
+    self.hi=list(map(int,s))
+    
+  #addition of huge integer
+  def add(self):
+    pass
+  #subtaction of huge integer
+  def subtract(self):
+    pass
+  def isEqualTo(self):
+    pass
+  def isNotEqualTo(self):
+    pass
+  def isGreaterThan(self):
+    pass
+  def isLessThan(self):
+    pass
+  def isGreaterThanEqualTo(self):
+    pass
+  def isLessThanEqualTo(self):
+    pass
+  def toString(self):
+    print("".join([str(i) for i in self.hi]))
+  
+hi=HugeInteger()
+hi.parse()
+hi.toString()
